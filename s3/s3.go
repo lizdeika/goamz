@@ -16,7 +16,6 @@ import (
 	"encoding/base64"
 	"encoding/xml"
 	"fmt"
-	"github.com/mitchellh/goamz/aws"
 	"io"
 	"io/ioutil"
 	"log"
@@ -27,6 +26,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/mitchellh/goamz/aws"
 )
 
 const debug = false
@@ -769,7 +770,7 @@ func (s3 *S3) prepare(req *request) error {
 	}
 	req.headers["Host"] = []string{u.Host}
 	req.headers["Date"] = []string{time.Now().In(time.UTC).Format(time.RFC1123)}
-	sign(s3.Auth, req.method, amazonEscape(req.signpath), req.params, req.headers)
+	// sign(s3.Auth, req.method, amazonEscape(req.signpath), req.params, req.headers)
 	return nil
 }
 
